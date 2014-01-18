@@ -5,32 +5,35 @@
 #define Serial1Baud  9600
 
 TinyGPSPlus gps;
+float flat, flon;
+unsigned long chars;
+unsigned short sentences, failed_checksum;
 
 //Heatsync Labs Latitude and Longitude
 const double HEATSYNC_LAT = 33.41532;
 const double HEATSYNC_LON = -111.835625;
 
-void setup() {
-  // put your setup code here, to run once:
+extern unsigned char hsllogo[] PROGMEM;
+
+void setup(){
   Serial.begin(SerialBaud);
   Serial1.begin(Serial1Baud);
-  
-  
+  Wire.begin();
   SeeedOled.init();  //initialze SEEED OLED display
   DDRB|=0x21;        
   PORTB |= 0x21;
-  
-  //setup display
-  SeeedOled.setNormalDisplay();
-  SeeedOled.setPageMode();
+
   SeeedOled.clearDisplay();
+  SeeedOled.drawBitmap(hsllogo, 1024);
 
-  //Show Heatsync Logo for 3 Seconds here
+  SeeedOled.setNormalDisplay();  
+  SeeedOled.setPageMode();
+  SeeedOled.setTextXY(3,3);
+  SeeedOled.putString("HeatSeeker");
   
-  //start reading data from the GPS
-  Wire.begin();
+  delay(1000);
   
-
+  SeeedOled.clearDisplay();
 }
 
 void loop() {
@@ -51,7 +54,7 @@ void loop() {
        
        //write the text, inform the user
        SeeedOled.setTextXY(0,3);
-       SeeedOled.putString("Distance in m"); //Print the String
+       SeeedOled.putString("Distance in m");
        SeeedOled.setTextXY(1,3);
        SeeedOled.putString("to HeatSync:");
        
@@ -62,3 +65,4 @@ void loop() {
     }
  }   
 }
+
