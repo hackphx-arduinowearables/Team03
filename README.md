@@ -1,4 +1,4 @@
-#HackPhx Team 3 - HeatSeeker
+#HackPhx Team 3 - HeeetSeeeker
 
 ##Always know how far you are from Heatsync Labs
 
