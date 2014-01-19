@@ -8,7 +8,9 @@ extern SeeedOLED SeeedOled;
 String timeString;
 
 void watch() {
-   int hour = gps.time.hour();
+    //sloppy way to get correct time zone
+   int hour = gps.time.hour() - 7;
+   
    int minute = gps.time.minute();
    int second = gps.time.second();
    
@@ -20,7 +22,7 @@ void watch() {
    if (second < 10) timeString += '0';
    timeString += second;
    
-   SeeedOled.setTextXY(0,3);
+   SeeedOled.setTextXY(0,2);
 
    char buf[9];
    timeString.toCharArray(buf, sizeof(buf));
