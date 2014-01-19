@@ -14,10 +14,15 @@ void watch() {
    
    timeString += hour;
    timeString += ":";
+   if (minute < 10) timeString += '0';
    timeString += minute;
    timeString += ".";
+   if (second < 10) timeString += '0';
    timeString += second;
    
    SeeedOled.setTextXY(0,2);
-   SeeedOled.putString(timeString)
+
+   char buf[9];
+   timeString.toCharArray(buf, sizeof(buf));
+   SeeedOled.putString(buf);
 }
