@@ -18,6 +18,8 @@ const uint32_t UPDATE_INTERVAL = 5000;
 
 extern unsigned char hsllogo[] PROGMEM;
 
+void watch();
+
 void setup(){
   Serial.begin(SerialBaud);
   Serial1.begin(Serial1Baud);
@@ -83,6 +85,11 @@ void loop()
   else
   {
     // Not enough time elapsed for update; don't do anything
+  }
+  
+  if (gps.time.isUpdated())
+  {
+    watch();
   }
 }
 
