@@ -72,19 +72,21 @@ void loop()
             gps.location.lat(),
             gps.location.lng(),
             HEATSYNC_LAT,
-            HEATSYNC_LON) / 1000000.0;
+            HEATSYNC_LON);
 
     String s;
     
     s.concat((unsigned)dist);
-    s += "m from HSL";
+    s += "meters";
     char buf[17];
     s.toCharArray(buf, sizeof(buf));
-    splashscreen(buf);
+    centertext(3, buf);
+    
+    centertext(4, "from HSL");
   }
   else
   {
-    // Not enough time elapsed for update; don't do anything
+    // Nothing to update
   }
   
   if (gps.time.isUpdated())
@@ -93,10 +95,16 @@ void loop()
   }
 }
 
+void centertext(unsigned line, const char *s)
+{
+  SeeedOled.setTextXY(line,8 - (strlen(s) >> 1));
+  SeeedOled.putString(s);
+}
+
 void splashscreen(const char *s)
 {
   SeeedOled.setTextXY(0,0);
   SeeedOled.drawBitmap(hsllogo, 1024);
-  SeeedOled.setTextXY(3,8 - (strlen(s) >> 1));
-  SeeedOled.putString(s);
+  centertext(3, s);
 }
+
