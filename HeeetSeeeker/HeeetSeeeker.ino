@@ -14,7 +14,7 @@ const double HEATSYNC_LAT = 33.41532;
 const double HEATSYNC_LON = -111.835625;
 
 const uint32_t MAX_AGE = 30000;
-const uint32_t UPDATE_INTERVAL = 1000;
+const uint32_t UPDATE_INTERVAL = 5000;
 
 extern unsigned char hsllogo[] PROGMEM;
 
@@ -62,7 +62,7 @@ void loop()
       }
     }
   }
-  else if (age < UPDATE_INTERVAL)
+  else if (gps.location.isUpdated())
   {
     //calculate distance in meters*
     double dist = 
@@ -71,15 +71,14 @@ void loop()
             gps.location.lng(),
             HEATSYNC_LAT,
             HEATSYNC_LON) / 1000000.0;
-       
-    //write the text, inform the user
-    SeeedOled.setTextXY(0,3);
-    SeeedOled.putString("Distance in m");
-    SeeedOled.setTextXY(1,3);
-    SeeedOled.putString("to HeatSync:");
-       
-    SeeedOled.setTextXY(2,3);
-    SeeedOled.putNumber(dist);
+
+    String s;
+    
+    s.concat((unsigned)dist);
+    s += "m from HSL";
+    char buf[17];
+    s.toCharArray(buf, sizeof(buf));
+    splashscreen(buf);
   }
   else
   {
