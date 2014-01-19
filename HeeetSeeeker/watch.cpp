@@ -20,7 +20,7 @@ void watch() {
    if (second < 10) timeString += '0';
    timeString += second;
    
-   SeeedOled.setTextXY(0,2);
+   SeeedOled.setTextXY(0,3);
 
    char buf[9];
    timeString.toCharArray(buf, sizeof(buf));
