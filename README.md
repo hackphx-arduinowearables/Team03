@@ -17,4 +17,4 @@ Here's the process to make one:
 1. Start by putting all of the Xadow components together with the included ribbon cables.
 2. Download the custom Xadow-Arduino IDE from here: http://www.seeedstudio.com/wiki/Xadow_Main_Board
 3. Upload the code here from the HeeetSeeeker directory
-4. Make your way to HeatSync Labs
+4. Let your HeeetSeeeker lead you to HeatSync Labs
