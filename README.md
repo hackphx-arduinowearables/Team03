@@ -18,3 +18,5 @@ Here's the process to make one:
 2. Download the custom Xadow-Arduino IDE from here: http://www.seeedstudio.com/wiki/Xadow_Main_Board
 3. Upload the code here from the HeeetSeeeker directory
 4. Let your HeeetSeeeker lead you to HeatSync Labs
+
+#####If anything goes wrong during use, hit the small button closest to the USB port!
