@@ -35,7 +35,7 @@ void setup(){
 
 void loop() 
 {
-  while (Serial.available())
+  while (Serial1.available())
   {
     gps.encode(Serial1.read());
   }
